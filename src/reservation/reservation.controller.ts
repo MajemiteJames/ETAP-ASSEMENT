@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ReservationService } from './reservation.service';
 import { Reservation } from './reservation.model';
 import { createReservationDto } from './dto/create-reservation.dto';
@@ -22,5 +22,10 @@ export class ReservationController {
     @Body() createReservationDto: createReservationDto,
   ): Reservation {
     return this.reservationService.createReservation(createReservationDto);
+  }
+
+  @Delete('/:id')
+  deleteReservation(@Param('id') id: string) {
+    return this.reservationService.deleteReservation(id);
   }
 }

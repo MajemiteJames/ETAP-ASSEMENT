@@ -33,4 +33,10 @@ export class ReservationService {
 
     return reservation;
   }
+
+  deleteReservation(id: string): void {
+    this.reservations = this.reservations.filter(
+      (reservation) => reservation.id !== id,
+    );
+  }
 }
