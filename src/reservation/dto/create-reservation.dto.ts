@@ -1,4 +1,10 @@
-import { IsDateString, IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsDateString,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+} from 'class-validator';
 import { RoomType } from '../reservation.enum';
 
 export class CreateReservationDto {
@@ -6,6 +12,10 @@ export class CreateReservationDto {
   @IsString()
   @IsEnum(RoomType)
   room_type: RoomType;
+
+  @IsNotEmpty()
+  @IsNumber()
+  hourly_rate: number;
 
   @IsNotEmpty()
   @IsDateString()

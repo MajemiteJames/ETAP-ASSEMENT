@@ -25,7 +25,7 @@ export class Reservation {
   wallet: number;
 
   @Column()
-  reservation_status: boolean;
+  reservation_checkedIn: string;
 
   @Column()
   reservation_checkedout: string;

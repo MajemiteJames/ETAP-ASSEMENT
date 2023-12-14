@@ -21,23 +21,12 @@ export class ReservationService {
     }
     return found;
   }
-  // createReservation(createReservationDto: CreateReservationDto): Reservation {
-  //   const { room_type, expected_checkin_time, expected_checkout_time } =
-  //     createReservationDto;
-  //   const reservation: Reservation = {
-  //     id: uuid(),
-  //     room_type,
-  //     hourly_rate: 0,
-  //     status: ReservationStatus.NOTPAID,
-  //     expected_checkin_time,
-  //     expected_checkout_time,
-  //     wallet: 0,
-  //     reservation_status: false,
-  //     reservation_checkedout: expected_checkout_time,
-  //   };
-  //   this.reservations.push(reservation);
-  //   return reservation;
-  // }
+
+  createReservation(
+    createReservationDto: CreateReservationDto,
+  ): Promise<Reservation> {
+    return this.reservationRepository.createReservation(createReservationDto);
+  }
   // deleteReservation(id: string): void {
   //   const found = this.getReservationById(id);
   //   this.reservations = this.reservations.filter(

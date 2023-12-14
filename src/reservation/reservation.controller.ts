@@ -27,12 +27,12 @@ export class ReservationController {
     return this.reservationService.getReservationById(id);
   }
 
-  // @Post()
-  // createReservation(
-  //   @Body() createReservationDto: CreateReservationDto,
-  // ): Reservation {
-  //   return this.reservationService.createReservation(createReservationDto);
-  // }
+  @Post()
+  createReservation(
+    @Body() createReservationDto: CreateReservationDto,
+  ): Promise<Reservation> {
+    return this.reservationService.createReservation(createReservationDto);
+  }
 
   // @Delete('/:id')
   // deleteReservation(@Param('id') id: string) {
