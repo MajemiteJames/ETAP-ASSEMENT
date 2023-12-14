@@ -1,5 +1,6 @@
-import { IsDateString, IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
 import { RoomType } from '../../reservation/reservation.enum';
+import { IsDateTimeFormat } from '../../common/validators/date-time.validator';
 
 export class GetRateDto {
   @IsNotEmpty()
@@ -8,10 +9,10 @@ export class GetRateDto {
   room_type: RoomType;
 
   @IsNotEmpty()
-  @IsDateString()
+  @IsDateTimeFormat()
   expected_checkin_time: Date;
 
   @IsNotEmpty()
-  @IsDateString()
+  @IsDateTimeFormat()
   expected_checkout_time: Date;
 }
