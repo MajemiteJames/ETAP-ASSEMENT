@@ -7,9 +7,9 @@ export class createReservationDto {
 
   @IsNotEmpty()
   @IsDateString()
-  expected_checkin_time: Date;
+  expected_checkin_time: string;
 
   @IsNotEmpty()
   @IsDateString()
-  expected_checkout_time: Date;
+  expected_checkout_time: string;
 }

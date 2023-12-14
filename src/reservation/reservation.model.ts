@@ -3,11 +3,11 @@ export interface Reservation {
   room_type: string;
   // customer_id: number;
   status: ReservationStatus;
-  expected_checkin_time: Date;
-  expected_checkout_time: Date;
+  expected_checkin_time: string;
+  expected_checkout_time: string;
   wallet: number;
   reservation_status: boolean;
-  reservation_checkedout: Date;
+  reservation_checkedout: string;
 }
 
 // export enum RoomType {
