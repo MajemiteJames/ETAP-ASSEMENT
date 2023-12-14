@@ -1,5 +1,5 @@
 import { IsDateString, IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { RoomType } from '../reservation.model';
+import { RoomType } from '../reservation.enum';
 
 export class CreateReservationDto {
   @IsNotEmpty()

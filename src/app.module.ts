@@ -6,6 +6,10 @@ import { ReservationModule } from './reservation/reservation.module';
   imports: [
     ReservationModule,
     TypeOrmModule.forRoot({
+      // type: 'sqlite',
+      // database: 'db',
+      // entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      // synchronize: true,
       type: 'postgres',
       host: 'ruby.db.elephantsql.com',
       username: 'ktroebhw',
