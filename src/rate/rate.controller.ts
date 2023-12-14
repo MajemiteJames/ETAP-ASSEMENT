@@ -15,4 +15,9 @@ export class RateController {
   getRate(@Body() getRateDto: GetRateDto): Rate {
     return this.rateService.getRate(getRateDto);
   }
+
+  @Post('overstay')
+  getOverStay(@Body() getRateDto: GetRateDto): Rate {
+    return this.rateService.getRate(getRateDto);
+  }
 }
