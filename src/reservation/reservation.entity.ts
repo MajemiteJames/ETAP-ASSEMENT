@@ -1,5 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Exclude } from 'class-transformer';
 import { RoomType, ReservationStatus } from './reservation.enum';
+import { User } from 'src/auth/user.entity';
 
 @Entity()
 export class Reservation {
@@ -29,4 +31,8 @@ export class Reservation {
 
   @Column()
   reservation_checkedout: string;
+
+  @ManyToOne((_type) => User, (user) => user.reservations, { eager: false })
+  @Exclude({ toPlainOnly: true })
+  user: User;
 }
