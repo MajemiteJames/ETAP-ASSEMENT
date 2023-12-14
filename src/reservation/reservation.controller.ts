@@ -23,7 +23,7 @@ export class ReservationController {
   // }
 
   @Get('/:id')
-  getReservationById(@Param('id') id: string): Promise<Reservation> {
+  getReservationById(@Param('id') id: number): Promise<Reservation> {
     return this.reservationService.getReservationById(id);
   }
 

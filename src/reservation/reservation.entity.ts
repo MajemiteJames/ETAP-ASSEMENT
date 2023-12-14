@@ -3,9 +3,6 @@ import { RoomType, ReservationStatus } from './reservation.enum';
 
 @Entity()
 export class Reservation {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
   @PrimaryGeneratedColumn()
   reservation_id: number;
 

@@ -14,7 +14,7 @@ export class ReservationService {
   // getAllReservation(): Reservation[] {
   //   return this.reservations;
   // }
-  async getReservationById(id: string): Promise<Reservation> {
+  async getReservationById(id: number): Promise<Reservation> {
     const found = await this.reservationRepository.findOne(id);
     if (!found) {
       throw new NotFoundException(`Reservation with ID "${id}" not found`);
