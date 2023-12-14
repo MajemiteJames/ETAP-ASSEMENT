@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ReservationService } from './reservation.service';
 import { Reservation } from './reservation.model';
+import { createReservationDto } from './dto/create-reservation.dto';
 
 @Controller('reservations')
 export class ReservationController {
@@ -13,14 +14,8 @@ export class ReservationController {
 
   @Post()
   createReservation(
-    @Body('room_type') room_type: string,
-    @Body('expected_checkin_time') expected_checkin_time: Date,
-    @Body('expected_checkout_time') expected_checkout_time: Date,
+    @Body() createReservationDto: createReservationDto,
   ): Reservation {
-    return this.reservationService.createReservation(
-      room_type,
-      expected_checkin_time,
-      expected_checkout_time,
-    );
+    return this.reservationService.createReservation(createReservationDto);
   }
 }
