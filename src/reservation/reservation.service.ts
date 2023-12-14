@@ -39,4 +39,10 @@ export class ReservationService {
       (reservation) => reservation.id !== id,
     );
   }
+
+  updateReservationStatus(id: string, status: ReservationStatus) {
+    const reservation = this.getReservationById(id);
+    reservation.status = status;
+    return reservation;
+  }
 }

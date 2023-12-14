@@ -1,6 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { ReservationService } from './reservation.service';
-import { Reservation } from './reservation.model';
+import { Reservation, ReservationStatus } from './reservation.model';
 import { createReservationDto } from './dto/create-reservation.dto';
 
 @Controller('reservations')
@@ -27,5 +35,13 @@ export class ReservationController {
   @Delete('/:id')
   deleteReservation(@Param('id') id: string) {
     return this.reservationService.deleteReservation(id);
+  }
+
+  @Patch('/:id/status')
+  updateReservationStatus(
+    @Param('id') id: string,
+    @Body('status') status: ReservationStatus,
+  ): Reservation {
+    return this.reservationService.updateReservationStatus(id, status);
   }
 }
