@@ -11,9 +11,11 @@ export class ReservationService {
     @InjectRepository(ReservationRepository)
     private reservationRepository: ReservationRepository,
   ) {}
-  // getAllReservation(): Reservation[] {
-  //   return this.reservations;
-  // }
+
+  async getAllReservation(): Promise<Reservation[]> {
+    return this.reservationRepository.find();
+  }
+
   async getReservationById(id: number): Promise<Reservation> {
     const found = await this.reservationRepository.findOne(id);
     if (!found) {

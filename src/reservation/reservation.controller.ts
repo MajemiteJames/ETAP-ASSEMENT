@@ -17,10 +17,10 @@ import { Reservation } from './reservation.entity';
 export class ReservationController {
   constructor(private reservationService: ReservationService) {}
 
-  // @Get()
-  // getAllReservation(): Reservation[] {
-  //   return this.reservationService.getAllReservation();
-  // }
+  @Get()
+  getAllReservation(): Promise<Reservation[]> {
+    return this.reservationService.getAllReservation();
+  }
 
   @Get('/:id')
   getReservationById(@Param('id') id: number): Promise<Reservation> {
