@@ -1,9 +1,11 @@
-import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
+import { IsDateString, IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { RoomType } from '../reservation.model';
 
-export class createReservationDto {
+export class CreateReservationDto {
   @IsNotEmpty()
   @IsString()
-  room_type: string;
+  @IsEnum(RoomType)
+  room_type: RoomType;
 
   @IsNotEmpty()
   @IsDateString()

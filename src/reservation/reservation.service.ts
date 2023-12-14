@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Reservation, ReservationStatus } from './reservation.model';
 import { v4 as uuid } from 'uuid';
-import { createReservationDto } from './dto/create-reservation.dto';
+import { CreateReservationDto } from './dto/create-reservation.dto';
 
 @Injectable()
 export class ReservationService {
@@ -12,15 +12,22 @@ export class ReservationService {
   }
 
   getReservationById(id: string): Reservation {
-    return this.reservations.find((reservation) => reservation.id === id);
+    const found = this.reservations.find(
+      (reservation) => reservation.id === id,
+    );
+    if (!found) {
+      throw new NotFoundException(`Reservation with ID "${id}" not found`);
+    }
+    return found;
   }
 
-  createReservation(createReservationDto: createReservationDto): Reservation {
+  createReservation(createReservationDto: CreateReservationDto): Reservation {
     const { room_type, expected_checkin_time, expected_checkout_time } =
       createReservationDto;
     const reservation: Reservation = {
       id: uuid(),
       room_type,
+      hourly_rate: 0,
       status: ReservationStatus.NOTPAID,
       expected_checkin_time,
       expected_checkout_time,
@@ -35,8 +42,9 @@ export class ReservationService {
   }
 
   deleteReservation(id: string): void {
+    const found = this.getReservationById(id);
     this.reservations = this.reservations.filter(
-      (reservation) => reservation.id !== id,
+      (reservation) => reservation.id !== found.id,
     );
   }
 

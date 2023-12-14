@@ -9,7 +9,8 @@ import {
 } from '@nestjs/common';
 import { ReservationService } from './reservation.service';
 import { Reservation, ReservationStatus } from './reservation.model';
-import { createReservationDto } from './dto/create-reservation.dto';
+import { CreateReservationDto } from './dto/create-reservation.dto';
+import { UpdateReservationStatusDto } from './dto/update-reservation.dto';
 
 @Controller('reservations')
 export class ReservationController {
@@ -27,7 +28,7 @@ export class ReservationController {
 
   @Post()
   createReservation(
-    @Body() createReservationDto: createReservationDto,
+    @Body() createReservationDto: CreateReservationDto,
   ): Reservation {
     return this.reservationService.createReservation(createReservationDto);
   }
@@ -40,8 +41,9 @@ export class ReservationController {
   @Patch('/:id/status')
   updateReservationStatus(
     @Param('id') id: string,
-    @Body('status') status: ReservationStatus,
+    @Body() updateReservationStatusDto: UpdateReservationStatusDto,
   ): Reservation {
+    const { status } = updateReservationStatusDto;
     return this.reservationService.updateReservationStatus(id, status);
   }
 }
