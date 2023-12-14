@@ -4,6 +4,7 @@ import { CreateReservationDto } from './dto/create-reservation.dto';
 import { ReservationRepository } from './reservation.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Reservation } from './reservation.entity';
+import { User } from 'src/auth/user.entity';
 
 @Injectable()
 export class ReservationService {
@@ -26,8 +27,12 @@ export class ReservationService {
 
   createReservation(
     createReservationDto: CreateReservationDto,
+    user: User,
   ): Promise<Reservation> {
-    return this.reservationRepository.createReservation(createReservationDto);
+    return this.reservationRepository.createReservation(
+      createReservationDto,
+      user,
+    );
   }
 
   async deleteReservation(id: number): Promise<void> {
