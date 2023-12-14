@@ -11,6 +11,10 @@ export class ReservationService {
     return this.reservations;
   }
 
+  getReservationById(id: string): Reservation {
+    return this.reservations.find((reservation) => reservation.id === id);
+  }
+
   createReservation(createReservationDto: createReservationDto): Reservation {
     const { room_type, expected_checkin_time, expected_checkout_time } =
       createReservationDto;
