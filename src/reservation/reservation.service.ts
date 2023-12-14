@@ -35,9 +35,14 @@ export class ReservationService {
       throw new NotFoundException(`Task with ID "${id}" not found`);
     }
   }
-  // updateReservationStatus(id: string, status: ReservationStatus) {
-  //   const reservation = this.getReservationById(id);
-  //   reservation.status = status;
-  //   return reservation;
-  // }
+
+  async updateReservationStatus(
+    id: number,
+    status: ReservationStatus,
+  ): Promise<Reservation> {
+    const reservation = await this.getReservationById(id);
+    reservation.status = status;
+    await this.reservationRepository.save(reservation);
+    return reservation;
+  }
 }

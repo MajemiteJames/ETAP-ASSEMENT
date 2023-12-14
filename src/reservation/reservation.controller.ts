@@ -39,12 +39,12 @@ export class ReservationController {
     return this.reservationService.deleteReservation(id);
   }
 
-  // @Patch('/:id/status')
-  // updateReservationStatus(
-  //   @Param('id') id: string,
-  //   @Body() updateReservationStatusDto: UpdateReservationStatusDto,
-  // ): Reservation {
-  //   const { status } = updateReservationStatusDto;
-  //   return this.reservationService.updateReservationStatus(id, status);
-  // }
+  @Patch('/:id/status')
+  updateReservationStatus(
+    @Param('id') id: number,
+    @Body() updateReservationStatusDto: UpdateReservationStatusDto,
+  ): Promise<Reservation> {
+    const { status } = updateReservationStatusDto;
+    return this.reservationService.updateReservationStatus(id, status);
+  }
 }
