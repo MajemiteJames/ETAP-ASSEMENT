@@ -34,10 +34,10 @@ export class ReservationController {
     return this.reservationService.createReservation(createReservationDto);
   }
 
-  // @Delete('/:id')
-  // deleteReservation(@Param('id') id: string) {
-  //   return this.reservationService.deleteReservation(id);
-  // }
+  @Delete('/:id')
+  deleteReservation(@Param('id') id: number): Promise<void> {
+    return this.reservationService.deleteReservation(id);
+  }
 
   // @Patch('/:id/status')
   // updateReservationStatus(

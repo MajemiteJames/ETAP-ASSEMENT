@@ -27,12 +27,14 @@ export class ReservationService {
   ): Promise<Reservation> {
     return this.reservationRepository.createReservation(createReservationDto);
   }
-  // deleteReservation(id: string): void {
-  //   const found = this.getReservationById(id);
-  //   this.reservations = this.reservations.filter(
-  //     (reservation) => reservation.id !== found.id,
-  //   );
-  // }
+
+  async deleteReservation(id: number): Promise<void> {
+    const result = await this.reservationRepository.delete(id);
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`Task with ID "${id}" not found`);
+    }
+  }
   // updateReservationStatus(id: string, status: ReservationStatus) {
   //   const reservation = this.getReservationById(id);
   //   reservation.status = status;
